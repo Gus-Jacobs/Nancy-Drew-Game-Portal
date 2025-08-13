@@ -13,3 +13,8 @@ https://archive.org/download/nancy-drew-PC-Game-Collection
 some of the games have direct X issues, so you can also get them from steamunlocked
 https://steamunlocked.net/?s=nancy+drew
 Enjoy
+
+
+08/13/2025
+
+Updated, now runs on electron and is linked to all 34 ND games for quick and easy use. Includes cheat sheats and other new features.
