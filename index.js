@@ -14,25 +14,32 @@ let gamesData = [];
 async function fetchGamesData() {
   const localPath = path.join(__dirname, 'games.json');
   try {
-    // Try to read local games.json first
-    log.info('Attempting to read local games.json...');
-    const localData = await fs.readFile(localPath, 'utf-8');
-    const localGames = JSON.parse(localData);
-    log.info('Successfully loaded local games.json.');
-    return localGames;
-  } catch (localError) {
-    log.warn('Local games.json not found or invalid, attempting remote fetch:', localError.message);
+    // 1. Attempt to fetch remote games.json first
+    log.info('Attempting to fetch remote games.json...');
+    const response = await fetch('https://raw.githubusercontent.com/LottieVixen/GamePortal/main/games.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const remoteGames = await response.json();
+    log.info('Successfully fetched remote games.json.');
+
+    // 2. Save the fetched remote games.json locally as a cache
+    await fs.writeFile(localPath, JSON.stringify(remoteGames, null, 2), 'utf-8');
+    log.info('Successfully cached remote games.json locally.');
+
+    return remoteGames;
+  } catch (remoteError) {
+    log.warn('Error fetching remote games.json, attempting to load local fallback:', remoteError.message);
     try {
-      log.info('Fetching remote games.json...');
-      const response = await fetch('https://raw.githubusercontent.com/LottieVixen/GamePortal/main/games.json');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const remoteGames = await response.json();
-      log.info('Successfully fetched remote games.json.');
-      return remoteGames;
-    } catch (remoteError) {
-      log.error('Error fetching remote game data and local file not found/invalid:', remoteError);
+      // 3. If remote fetch fails, try to read local games.json as fallback
+      log.info('Attempting to read local games.json as fallback...');
+      const localData = await fs.readFile(localPath, 'utf-8');
+      const localGames = JSON.parse(localData);
+      log.info('Successfully loaded local games.json fallback.');
+      return localGames;
+    } catch (localError) {
+      log.error('Error loading local games.json fallback:', localError.message);
+      log.error('Failed to load game data from both remote and local sources.');
       return []; // Return empty array if both fail
     }
   }

@@ -7,7 +7,9 @@ contextBridge.exposeInMainWorld('electron', {
   selectDirectory: () => ipcRenderer.invoke('select-directory'),
   downloadGame: (args) => ipcRenderer.invoke('download-game', args),
   getCheatsheet: (gameName) => ipcRenderer.invoke('get-cheatsheet', gameName),
-  checkAndInstallDirectX: () => ipcRenderer.invoke('check-and-install-directx'),
+  checkDirectX: () => ipcRenderer.invoke('check-directx'),
+  installDirectX: () => ipcRenderer.invoke('install-directx'),
   getDiskSpace: (drive) => ipcRenderer.invoke('get-disk-space', drive),
-  getIntroVideo: () => ipcRenderer.invoke('get-intro-video')
+  getIntroVideo: () => ipcRenderer.invoke('get-intro-video'),
+  deleteGame: (gameName) => ipcRenderer.invoke('delete-game', gameName)
 });
