@@ -1,0 +1,308 @@
+[
+  {
+    "id": "secrets-can-kill",
+    "title": "Secrets Can Kill",
+    "icon": "assets/game_icons/Secrets_Can_Kill.jpg",
+    "downloadUrl": "https://example.com/secrets-can-kill.zip",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Secrets Can Kill",
+    "installed": false
+  },
+  {
+    "id": "stay-tuned-for-danger",
+    "title": "Stay Tuned for Danger",
+    "icon": "assets/game_icons/Stay_Tuned_for_Danger.png",
+    "downloadUrl": "https://example.com/stay-tuned-for-danger.zip",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Stay Tuned for Danger",
+    "installed": false
+  },
+  {
+    "id": "message-in-a-haunted-mansion",
+    "title": "Message in a Haunted Mansion",
+    "icon": "assets/game_icons/Message_in_a_Haunted_Mansion.png",
+    "downloadUrl": "https://example.com/message-in-a-haunted-mansion.zip",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Message in a Haunted Mansion",
+    "installed": false
+  },
+  {
+    "id": "treasure-in-the-royal-tower",
+    "title": "Treasure in the Royal Tower",
+    "icon": "assets/game_icons/Treasure_in_the_Royal_Tower.png",
+    "downloadUrl": "https://example.com/treasure-in-the-royal-tower.zip",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Treasure in the Royal Tower",
+    "installed": false
+  },
+  {
+    "id": "the-final-scene",
+    "title": "The Final Scene",
+    "icon": "assets/game_icons/The_Final_Scene.jpeg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/The Final Scene",
+    "installed": false
+  },
+  {
+    "id": "secret-of-the-scarlet-hand",
+    "title": "Secret of the Scarlet Hand",
+    "icon": "assets/game_icons/Secret_of_the_Scarlet_Hand.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Secret of the Scarlet Hand",
+    "installed": false
+  },
+  {
+    "id": "ghost-dogs-of-moon-lake",
+    "title": "Ghost Dogs of Moon Lake",
+    "icon": "assets/game_icons/Ghost_Dogs_of_Moon_Lake.jpeg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Ghost Dogs of Moon Lake",
+    "installed": false
+  },
+  {
+    "id": "the-haunted-carousel",
+    "title": "The Haunted Carousel",
+    "icon": "assets/game_icons/The_Haunted_Carousel.jpeg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/The Haunted Carousel",
+    "installed": false
+  },
+  {
+    "id": "danger-on-deception-island",
+    "title": "Danger on Deception Island",
+    "icon": "assets/game_icons/Danger_on_Deception_Island.jpeg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Danger on Deception Island",
+    "installed": false
+  },
+  {
+    "id": "the-secret-of-shadow-ranch",
+    "title": "The Secret of Shadow Ranch",
+    "icon": "assets/game_icons/The_Secret_of_Shadow_Ranch.jpeg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/The Secret of Shadow Ranch",
+    "installed": false
+  },
+  {
+    "id": "curse-of-blackmoor-manor",
+    "title": "Curse of Blackmoor Manor",
+    "icon": "assets/game_icons/Curse_of_Blackmoor_Manor.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Curse of Blackmoor Manor",
+    "installed": false
+  },
+  {
+    "id": "secret-of-the-old-clock",
+    "title": "Secret of the Old Clock",
+    "icon": "assets/game_icons/Secret_of_the_Old_Clock.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Secret of the Old Clock",
+    "installed": false
+  },
+  {
+    "id": "last-train-to-blue-moon-canyon",
+    "title": "Last Train to Blue Moon Canyon",
+    "icon": "assets/game_icons/Last_Train_to_Blue_Moon_Canyon.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Last Train to Blue Moon Canyon",
+    "installed": false
+  },
+  {
+    "id": "danger-by-design",
+    "title": "Danger By Design",
+    "icon": "assets/game_icons/Danger_By_Design.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Danger By Design",
+    "installed": false
+  },
+  {
+    "id": "the-creature-of-kapu-cave",
+    "title": "The Creature of Kapu Cave",
+    "icon": "assets/game_icons/The_Creature_of_Kapu_Cave.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/The Creature of Kapu Cave",
+    "installed": false
+  },
+  {
+    "id": "the-white-wolf-of-icicle-creek",
+    "title": "The White Wolf of Icicle Creek",
+    "icon": "assets/game_icons/The_White_Wolf_of_Icicle_Creek.jpeg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/The White Wolf of Icicle Creek",
+    "installed": false
+  },
+  {
+    "id": "legend-of-the-crystal-skull",
+    "title": "Legend of the Crystal Skull",
+    "icon": "assets/game_icons/Legend_of_the_Crystal_Skull.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Legend of the Crystal Skull",
+    "installed": false
+  },
+  {
+    "id": "the-phantom-of-venice",
+    "title": "The Phantom of Venice",
+    "icon": "assets/game_icons/The_Phantom_of_Venice.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/The Phantom of Venice",
+    "installed": false
+  },
+  {
+    "id": "the-haunting-of-castle-malloy",
+    "title": "The Haunting of Castle Malloy",
+    "icon": "assets/game_icons/The_Haunting_of_Castle_Malloy.jpeg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/The Haunting of Castle Malloy",
+    "installed": false
+  },
+  {
+    "id": "ransom-of-the-seven-ships",
+    "title": "Ransom of the Seven Ships",
+    "icon": "assets/game_icons/Ransom_of_the_Seven_Ship.jpeg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Ransom of the Seven Ships",
+    "installed": false
+  },
+  {
+    "id": "warnings-at-waverly",
+    "title": "Warnings at Waverly",
+    "icon": "assets/game_icons/Warnings_at_Waverly.jpg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Warnings at Waverly",
+    "installed": false
+  },
+  {
+    "id": "trail-of-the-twister",
+    "title": "Trail of the Twister",
+    "icon": "assets/game_icons/Trail_of_Twister.jpg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Trail of the Twister",
+    "installed": false
+  },
+  {
+    "id": "shadow-at-the-waters-edge",
+    "title": "Shadow at the Water's Edge",
+    "icon": "assets/game_icons/Shadow_at_the_Water's_Edge.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Shadow at the Water's Edge",
+    "installed": false
+  },
+  {
+    "id": "the-captive-curse",
+    "title": "The Captive Curse",
+    "icon": "assets/game_icons/The_Captive_Curse.jpeg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/The Captive Curse",
+    "installed": false
+  },
+  {
+    "id": "alibi-in-ashes",
+    "title": "Alibi in Ashes",
+    "icon": "assets/game_icons/Alibi_in_Ashes.jpeg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Alibi in Ashes",
+    "installed": false
+  },
+  {
+    "id": "tomb-of-the-lost-queen",
+    "title": "Tomb of the Lost Queen",
+    "icon": "assets/game_icons/Tomb_of_the_Lost_Queen.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Tomb of the Lost Queen",
+    "installed": false
+  },
+  {
+    "id": "the-deadly-device",
+    "title": "The Deadly Device",
+    "icon": "assets/game_icons/The_Deadly_Device.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/The Deadly Device",
+    "installed": false
+  },
+  {
+    "id": "ghost-of-thornton-hall",
+    "title": "Ghost of Thornton Hall",
+    "icon": "assets/game_icons/Ghost_of_Thornton_Hall.jpg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Ghost of Thornton Hall",
+    "installed": false
+  },
+  {
+    "id": "the-silent-spy",
+    "title": "The Silent Spy",
+    "icon": "assets/game_icons/The_Silent_Spy.jpg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/The Silent Spy",
+    "installed": false
+  },
+  {
+    "id": "the-shattered-medallion",
+    "title": "The Shattered Medallion",
+    "icon": "assets/game_icons/The_Shattered_Medallion.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/The Shattered Medallion",
+    "installed": false
+  },
+  {
+    "id": "labyrinth-of-lies",
+    "title": "Labyrinth of Lies",
+    "icon": "assets/game_icons/Labyrinth_of_Lies.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Labyrinth of Lies",
+    "installed": false
+  },
+  {
+    "id": "sea-of-darkness",
+    "title": "Sea of Darkness",
+    "icon": "assets/game_icons/Sea_of_Darkness.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Sea of Darkness",
+    "installed": false
+  },
+  {
+    "id": "midnight-in-salem",
+    "title": "Midnight in Salem",
+    "icon": "assets/game_icons/Midnight_in_Salem.png",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Midnight in Salem",
+    "installed": false
+  },
+  {
+    "id": "mystery-of-the-seven-keys",
+    "title": "Mystery of the Seven Keys",
+    "icon": "assets/game_icons/Mystery_of_the_Seven_Keys.jpg",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
+    "cheatsheetPath": "cheatsheets/Mystery of the Seven Keys",
+    "installed": false
+  }
+]

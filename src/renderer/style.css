@@ -1,0 +1,447 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root {
+  --primary-glow-color: #00e5ff;
+  --background-color: #010409;
+  --card-background-color: rgba(20, 24, 30, 0.85);
+  --border-color: rgba(0, 229, 255, 0.3);
+  --subtle-text-color: #8899a6;
+  --danger-color: #dc3545;
+  --danger-glow-color: #ff001e;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background-color: var(--background-color) !important;
+  color: #e0e0e0;
+  overflow: hidden;
+  margin: 0;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(ellipse at center, #2a3a50 0%, #010409 70%); /* Adjusted for less darkness */
+}
+
+/* --- CUSTOM SCROLLBAR --- */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-glow-color);
+  border-radius: 10px;
+  border: 2px solid var(--background-color);
+}
+
+/* --- INTRO --- */
+/* --- INTRO --- */
+#intro-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#intro-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+}
+
+#skip-intro {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    border: 1px solid var(--primary-glow-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+#skip-intro:hover {
+    background-color: var(--primary-glow-color);
+    color: black;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.8);
+}
+
+/* --- MENU --- */
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+}
+
+.menu-content {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.portal-title {
+    font-size: 6rem;
+    color: var(--primary-glow-color);
+    text-shadow: 0 0 15px rgba(0, 229, 255, 0.7), 0 0 30px rgba(0, 229, 255, 0.5);
+    margin-bottom: 1rem;
+    animation: pulse 2.5s infinite;
+}
+
+.welcome-message {
+    font-size: 1.5rem;
+    color: var(--subtle-text-color);
+    margin-bottom: 3rem;
+}
+
+.menu-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap; /* Ensure buttons wrap if space is constrained */
+}
+
+.menu-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--primary-glow-color);
+    border: 2px solid var(--primary-glow-color);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
+}
+
+.menu-button:hover {
+    background-color: var(--primary-glow-color);
+    color: var(--background-color);
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.8);
+}
+
+/* --- MAIN VIEW (PLAY/BROWSE) --- */
+.main-view {
+    display: flex;
+    flex-direction: row-reverse; /* Sidebar on the left */
+    height: 100vh;
+    width: 100vw;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.content-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-left: 2rem; /* Adjusted padding */
+}
+
+.header-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+    gap: 1rem; /* Spacing between back button and title */
+}
+
+.page-title {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    flex-grow: 1; /* Allow title to take available space */
+    text-align: center; /* Center the title */
+}
+
+.header-bar .icon-button { /* Ensure back button is on the left */
+    /* No specific margin needed here, gap handles spacing */
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    color: var(--subtle-text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.icon-button:hover {
+    color: var(--primary-glow-color);
+    transform: scale(1.1);
+}
+
+.icon-button svg {
+    width: 32px;
+    height: 32px;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 1rem; /* For scrollbar spacing */
+}
+
+.game-card {
+    background-color: var(--card-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    min-height: 300px; /* Added to prevent 5px tall issue */
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.4);
+}
+
+.game-card-image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* 1:1 Aspect Ratio */
+    cursor: pointer;
+}
+
+.game-card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.coming-soon-banner {
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    background-color: #b71c1c; /* Deep red */
+    color: white;
+    padding: 0.3rem 2.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    white-space: nowrap;
+}
+
+.card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.card-title {
+    color: #fff;
+    font-size: 1.1rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 1rem;
+}
+
+.card-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn {
+    width: 100%;
+    padding: 0.75rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    border: 1px solid transparent;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-primary {
+    background-color: var(--primary-glow-color);
+    border-color: var(--primary-glow-color);
+    color: var(--background-color);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border-color: var(--primary-glow-color);
+    color: var(--primary-glow-color);
+}
+
+.btn-danger {
+    background-color: transparent;
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-color);
+    color: white;
+    box-shadow: 0 0 15px var(--danger-glow-color);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+    width: 300px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 2rem 2rem 0; /* Consistent padding for the sidebar, adjusted right padding */
+    justify-content: flex-start; /* Align content to the start (top) */
+}
+
+.search-bar, .storage-bar {
+    width: 100%; /* Ensure they take full width of sidebar */
+}
+
+.search-bar input {
+    width: 100%; /* Make it fill the container */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-background-color);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 5px rgba(0, 229, 255, 0.2); /* Inner glow for sleek look */
+}
+
+.search-bar input:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.7), inset 0 0 5px rgba(0, 229, 255, 0.5); /* Outer and inner glow on focus */
+    border-color: var(--primary-glow-color);
+}
+
+.storage-bar {
+    background-color: var(--card-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.storage-icon svg {
+    width: 32px;
+    height: 32px;
+    color: var(--primary-glow-color);
+}
+
+.storage-details {
+    flex-grow: 1;
+}
+
+.storage-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: var(--subtle-text-color);
+}
+
+.storage-progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: #010409;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.storage-progress-bar {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+/* --- GAME INFO VIEW --- */
+.game-info-view {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: var(--card-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.info-content h2 {
+    color: var(--primary-glow-color);
+    margin-top: 0;
+}
+
+.info-content pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: monospace;
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { text-shadow: 0 0 15px rgba(0, 229, 255, 0.7), 0 0 30px rgba(0, 229, 255, 0.5); }
+  50% { text-shadow: 0 0 20px rgba(0, 229, 255, 1), 0 0 40px rgba(0, 229, 255, 0.8); }
+  100% { text-shadow: 0 0 15px rgba(0, 229, 255, 0.7), 0 0 30px rgba(0, 229, 255, 0.5); }
+}
+
+
+
