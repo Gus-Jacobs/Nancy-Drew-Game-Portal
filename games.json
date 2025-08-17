@@ -264,8 +264,8 @@
     "id": "the-shattered-medallion",
     "title": "The Shattered Medallion",
     "icon": "assets/game_icons/The_Shattered_Medallion.png",
-    "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Nancy.Drew.31.-.Labyrinth.Of.Lies.2015.7z",
-    "executablePath": "setup.exe",
+    "downloadUrl": "",
+    "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/The Shattered Medallion",
     "installed": false
   },
@@ -273,8 +273,8 @@
     "id": "labyrinth-of-lies",
     "title": "Labyrinth of Lies",
     "icon": "assets/game_icons/Labyrinth_of_Lies.png",
-    "downloadUrl": "",
-    "executablePath": "game.exe",
+    "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Nancy.Drew.31.-.Labyrinth.Of.Lies.2015.7z",
+    "executablePath": "setup.exe",
     "cheatsheetPath": "cheatsheets/Labyrinth of Lies",
     "installed": false
   },
