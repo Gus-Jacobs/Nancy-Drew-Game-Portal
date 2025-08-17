@@ -3,7 +3,7 @@
     "id": "secrets-can-kill",
     "title": "Secrets Can Kill",
     "icon": "assets/game_icons/Secrets_Can_Kill.jpg",
-    "downloadUrl": "https://example.com/secrets-can-kill.zip",
+    "downloadUrl": "",
     "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/Secrets Can Kill",
     "installed": false
@@ -12,7 +12,7 @@
     "id": "stay-tuned-for-danger",
     "title": "Stay Tuned for Danger",
     "icon": "assets/game_icons/Stay_Tuned_for_Danger.png",
-    "downloadUrl": "https://example.com/stay-tuned-for-danger.zip",
+    "downloadUrl": "",
     "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/Stay Tuned for Danger",
     "installed": false
@@ -21,7 +21,7 @@
     "id": "message-in-a-haunted-mansion",
     "title": "Message in a Haunted Mansion",
     "icon": "assets/game_icons/Message_in_a_Haunted_Mansion.png",
-    "downloadUrl": "https://example.com/message-in-a-haunted-mansion.zip",
+    "downloadUrl": "",
     "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/Message in a Haunted Mansion",
     "installed": false
@@ -30,7 +30,7 @@
     "id": "treasure-in-the-royal-tower",
     "title": "Treasure in the Royal Tower",
     "icon": "assets/game_icons/Treasure_in_the_Royal_Tower.png",
-    "downloadUrl": "https://example.com/treasure-in-the-royal-tower.zip",
+    "downloadUrl": "",
     "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/Treasure in the Royal Tower",
     "installed": false
