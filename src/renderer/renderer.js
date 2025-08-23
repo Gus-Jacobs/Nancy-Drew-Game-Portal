@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
@@ -31,11 +30,13 @@ const App = () => {
     const [diskSpace, setDiskSpace] = useState({ free: 0, size: 0 });
     const [selectedGame, setSelectedGame] = useState(null);
     const [cheatsheet, setCheatsheet] = useState('');
+    const [downloadProgress, setDownloadProgress] = useState({});
     const videoRef = useRef(null);
 
     // --- Effects ---
     useEffect(() => {
         const initialize = async () => {
+            console.log('Initializing application...');
             const dxInstalled = await window.electron.checkDirectX();
             if (!dxInstalled) {
                 const confirmed = window.confirm('DirectX Runtime is not detected. Would you like to install it now?');
@@ -49,15 +50,51 @@ const App = () => {
 
             const allGames = await window.electron.getGames();
             setGames(allGames);
+            console.log('Fetched all games:', allGames.map(g => g.title));
 
             const installedGames = await window.electron.getLocalGames();
             setLocalGames(installedGames);
+            console.log('Fetched local games on init:', installedGames);
 
             const space = await window.electron.getDiskSpace();
             setDiskSpace(space);
+            console.log('Fetched disk space:', space);
         };
 
         initialize();
+
+        const handleDownloadProgress = (progressData) => {
+            console.log('Download progress update:', progressData);
+            setDownloadProgress(prev => ({
+                ...prev,
+                [progressData.gameId]: progressData
+            }));
+
+            if (progressData.status === 'complete') {
+                console.log('Download complete, clearing progress after 2 seconds.');
+                setTimeout(() => {
+                    setDownloadProgress(prev => {
+                        const newProgress = { ...prev };
+                        delete newProgress[progressData.gameId];
+                        return newProgress;
+                    });
+                }, 2000);
+            }
+        };
+        window.electron.onDownloadProgress(handleDownloadProgress);
+
+        const handleUpdateLocalGames = (updatedGames) => {
+            console.log('Received update-local-games event with:', updatedGames);
+            setLocalGames(updatedGames);
+            console.log('localGames state updated to:', updatedGames);
+        };
+        window.electron.onUpdateLocalGames(handleUpdateLocalGames);
+
+        return () => {
+            console.log('Cleaning up event listeners.');
+            window.electron.removeDownloadProgressListener(handleDownloadProgress);
+            window.electron.removeUpdateLocalGamesListener(handleUpdateLocalGames);
+        };
     }, []);
 
     // --- Handlers ---
@@ -70,30 +107,32 @@ const App = () => {
     }
     const handleLaunchGame = (gameName) => window.electron.launchGame(gameName);
     const handleViewGameInfo = async (game) => {
+        console.log(`Viewing game info for: ${game.title}`);
         const result = await window.electron.getCheatsheet(game.title);
         if(result.success) {
             setCheatsheet(result.content);
+            console.log('Cheatsheet loaded successfully.');
         } else {
             setCheatsheet('No cheatsheet available for this game.');
+            console.log('Cheatsheet not found.', result.error);
         }
         setSelectedGame(game);
         setView('game-info');
     };
     const handleDeleteGame = async (gameName) => {
+        console.log(`Attempting to delete game: ${gameName}`);
         const confirmed = window.confirm(`Are you sure you want to delete ${gameName}? This will remove all game files.`);
         if (confirmed) {
             await window.electron.deleteGame(gameName);
+            console.log(`Game ${gameName} deleted. Fetching updated local games.`);
             const installedGames = await window.electron.getLocalGames();
             setLocalGames(installedGames);
+            console.log('localGames state updated after delete:', installedGames);
         }
     };
     const handleDownloadGame = async (game) => {
-        const installPath = await window.electron.selectDirectory();
-        if (installPath) {
-            await window.electron.downloadGame({ game, installPath });
-            const installedGames = await window.electron.getLocalGames();
-            setLocalGames(installedGames);
-        }
+        console.log(`Initiating download for game: ${game.title}`);
+        await window.electron.downloadGame({ game });
     };
 
     // --- Render Methods ---
@@ -129,6 +168,7 @@ const App = () => {
                     <h1 className="page-title">{selectedGame.title}</h1>
                 </div>
                 <div className="info-content">
+                    <img src={selectedGame.icon} alt={selectedGame.title} className="game-info-image" />
                     <h2>Game Info & Cheats</h2>
                     <pre>{cheatsheet}</pre>
                 </div>
@@ -147,8 +187,14 @@ const App = () => {
             game.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
 
-        console.log('Games to render:', gamesToRender.length, gamesToRender.map(g => g.title));
-        console.log('Filtered games:', filteredGames.length, filteredGames.map(g => g.title));
+        const formatBytes = (bytes, decimals = 2) => {
+            if (!bytes || bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
 
         return (
             <div className="main-view">
@@ -163,6 +209,8 @@ const App = () => {
                         {filteredGames.map(game => {
                             const isInstalled = localGames.includes(game.title);
                             const isAvailable = !!game.downloadUrl;
+                            const downloadInfo = downloadProgress[game.id];
+
                             return (
                                 <div key={game.id} className={`game-card ${!isAvailable && !isInstalled ? 'unavailable' : ''}`}>
                                     <div className="game-card-image-container" onClick={() => handleViewGameInfo(game)}>
@@ -177,6 +225,22 @@ const App = () => {
                                                     <button className="btn btn-primary" onClick={() => handleLaunchGame(game.title)}>Play</button>
                                                     <button className="btn btn-danger" onClick={() => handleDeleteGame(game.title)}>Delete</button>
                                                 </>
+                                            ) : downloadInfo ? (
+                                                <div className="progress-bar-container">
+                                                    <div className="progress-bar" style={{ width: `${downloadInfo.progress || 0}%` }}></div>
+                                                    <div className="progress-text">
+                                                        {downloadInfo.status === 'downloading' && (
+                                                            <>
+                                                                <div>{`Downloading: ${downloadInfo.progress ? downloadInfo.progress.toFixed(0) : 0}%`}</div>
+                                                                <div>{`${formatBytes(downloadInfo.downloadedBytes)} / ${formatBytes(downloadInfo.totalBytes)}`}</div>
+                                                                <div>{`${formatBytes(downloadInfo.downloadSpeed)}/s`}</div>
+                                                            </>
+                                                        )}
+                                                        {downloadInfo.status === 'extracting' && <span>Extracting...</span>}
+                                                        {downloadInfo.status === 'complete' && <span>Complete!</span>}
+                                                        {downloadInfo.status === 'error' && <span className="error-text">Error: {downloadInfo.error}</span>}
+                                                    </div>
+                                                </div>
                                             ) : (
                                                 <button className="btn btn-secondary" disabled={!isAvailable} onClick={() => handleDownloadGame(game)}>Download</button>
                                             )}

@@ -200,7 +200,7 @@ body {
 
 .game-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     overflow-y: auto;
     flex-grow: 1;
@@ -216,7 +216,7 @@ body {
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
-    min-height: 300px; /* Added to prevent 5px tall issue */
+    min-height: 450px;
 }
 
 .game-card:hover {
@@ -227,7 +227,7 @@ body {
 .game-card-image-container {
     position: relative;
     width: 100%;
-    padding-top: 100%; /* 1:1 Aspect Ratio */
+    height: 250px;
     cursor: pointer;
 }
 
@@ -243,10 +243,10 @@ body {
 .coming-soon-banner {
     position: absolute;
     top: 15px;
-    right: -35px;
+    right: -45px;
     background-color: #b71c1c; /* Deep red */
     color: white;
-    padding: 0.3rem 2.5rem;
+    padding: 0.5rem 3rem;
     font-size: 0.9rem;
     font-weight: bold;
     text-align: center;
@@ -265,7 +265,7 @@ body {
 
 .card-title {
     color: #fff;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
@@ -280,7 +280,7 @@ body {
 
 .btn {
     width: 100%;
-    padding: 0.75rem;
+    padding: 1rem;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     border-radius: 5px;
@@ -430,6 +430,16 @@ body {
     color: #e0e0e0;
 }
 
+.game-info-image {
+    width: 200px; /* Or your desired size */
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    float: left;
+    margin-right: 1.5rem;
+}
+
 
 /* --- ANIMATIONS --- */
 @keyframes fadeIn {
@@ -442,6 +452,3 @@ body {
   50% { text-shadow: 0 0 20px rgba(0, 229, 255, 1), 0 0 40px rgba(0, 229, 255, 0.8); }
   100% { text-shadow: 0 0 15px rgba(0, 229, 255, 0.7), 0 0 30px rgba(0, 229, 255, 0.5); }
 }
-
-
-
