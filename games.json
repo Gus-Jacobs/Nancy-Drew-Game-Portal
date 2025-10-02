@@ -279,6 +279,15 @@
     "installed": false
   },
   {
+    "id": "lights-camera-curses",
+    "title": "Lights, Camera, Curses",
+    "icon": "assets/game_icons/Lights_Camera_Curses.png",
+    "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Nancy.Drew.29.-.Dossier.Light.Camera.Curses.2008.7z",
+    "executablePath": "setup.exe",
+    "cheatsheetPath": "cheatsheets/LightsCameraCurses",
+    "installed": false
+  },
+  {
     "id": "sea-of-darkness",
     "title": "Sea of Darkness",
     "icon": "assets/game_icons/Sea_of_Darkness.png",
