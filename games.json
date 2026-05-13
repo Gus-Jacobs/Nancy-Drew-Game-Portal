@@ -30,7 +30,7 @@
     "id": "treasure-in-the-royal-tower",
     "title": "Treasure in the Royal Tower",
     "icon": "assets/game_icons/Treasure_in_the_Royal_Tower.png",
-    "downloadUrl": "",
+    "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/TRT.7z",
     "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/Treasure in the Royal Tower",
     "installed": false
@@ -93,7 +93,7 @@
     "id": "curse-of-blackmoor-manor",
     "title": "Curse of Blackmoor Manor",
     "icon": "assets/game_icons/Curse_of_Blackmoor_Manor.png",
-    "downloadUrl": "",
+    "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Curse.of.Blackmoor.Manor.7z",
     "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/Curse of Blackmoor Manor",
     "installed": false
@@ -111,7 +111,7 @@
     "id": "last-train-to-blue-moon-canyon",
     "title": "Last Train to Blue Moon Canyon",
     "icon": "assets/game_icons/Last_Train_to_Blue_Moon_Canyon.png",
-    "downloadUrl": "",
+    "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Last.Train.to.Blue.Moon.Canyon.7z",
     "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/Last Train to Blue Moon Canyon",
     "installed": false
@@ -138,7 +138,7 @@
     "id": "the-white-wolf-of-icicle-creek",
     "title": "The White Wolf of Icicle Creek",
     "icon": "assets/game_icons/The_White_Wolf_of_Icicle_Creek.jpeg",
-    "downloadUrl": "",
+    "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/The.White.Wolf.of.Icicle.Creek.7z",
     "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/The White Wolf of Icicle Creek",
     "installed": false
@@ -147,7 +147,7 @@
     "id": "legend-of-the-crystal-skull",
     "title": "Legend of the Crystal Skull",
     "icon": "assets/game_icons/Legend_of_the_Crystal_Skull.png",
-    "downloadUrl": "",
+    "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Legend.of.the.Crystal.Skull.7z",
     "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/Legend of the Crystal Skull",
     "installed": false
@@ -183,7 +183,7 @@
     "id": "warnings-at-waverly",
     "title": "Warnings at Waverly",
     "icon": "assets/game_icons/Warnings_at_Waverly.jpg",
-    "downloadUrl": "",
+    "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Warnings.at.Waverly.Academy.7z",
     "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/Warnings at Waverly",
     "installed": false
@@ -201,7 +201,7 @@
     "id": "shadow-at-the-waters-edge",
     "title": "Shadow at the Water's Edge",
     "icon": "assets/game_icons/Shadow_at_the_Water's_Edge.png",
-    "downloadUrl": "",
+    "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Shadow.at.the.Water.s.Edge.7z",
     "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/Shadow at the Water's Edge",
     "installed": false
@@ -210,7 +210,7 @@
     "id": "the-captive-curse",
     "title": "The Captive Curse",
     "icon": "assets/game_icons/The_Captive_Curse.jpeg",
-    "downloadUrl": "",
+    "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/The.Captive.Curse.7z",
     "executablePath": "game.exe",
     "cheatsheetPath": "cheatsheets/The Captive Curse",
     "installed": false
