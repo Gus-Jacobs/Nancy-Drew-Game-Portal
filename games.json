@@ -94,7 +94,7 @@
     "title": "Curse of Blackmoor Manor",
     "icon": "assets/game_icons/Curse_of_Blackmoor_Manor.png",
     "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Curse.of.Blackmoor.Manor.7z",
-    "executablePath": "game.exe",
+    "executablePath": "Game.exe",
     "cheatsheetPath": "cheatsheets/Curse of Blackmoor Manor",
     "installed": false
   },
@@ -139,7 +139,7 @@
     "title": "The White Wolf of Icicle Creek",
     "icon": "assets/game_icons/The_White_Wolf_of_Icicle_Creek.jpeg",
     "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/The.White.Wolf.of.Icicle.Creek.7z",
-    "executablePath": "game.exe",
+    "executablePath": "Game.exe",
     "cheatsheetPath": "cheatsheets/The White Wolf of Icicle Creek",
     "installed": false
   },
@@ -148,7 +148,7 @@
     "title": "Legend of the Crystal Skull",
     "icon": "assets/game_icons/Legend_of_the_Crystal_Skull.png",
     "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Legend.of.the.Crystal.Skull.7z",
-    "executablePath": "game.exe",
+    "executablePath": "Game.exe",
     "cheatsheetPath": "cheatsheets/Legend of the Crystal Skull",
     "installed": false
   },
@@ -184,7 +184,7 @@
     "title": "Warnings at Waverly",
     "icon": "assets/game_icons/Warnings_at_Waverly.jpg",
     "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Warnings.at.Waverly.Academy.7z",
-    "executablePath": "game.exe",
+    "executablePath": "Waverly.exe",
     "cheatsheetPath": "cheatsheets/Warnings at Waverly",
     "installed": false
   },
@@ -202,7 +202,7 @@
     "title": "Shadow at the Water's Edge",
     "icon": "assets/game_icons/Shadow_at_the_Water's_Edge.png",
     "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Shadow.at.the.Water.s.Edge.7z",
-    "executablePath": "game.exe",
+    "executablePath": "Shadow.exe",
     "cheatsheetPath": "cheatsheets/Shadow at the Water's Edge",
     "installed": false
   },
@@ -211,7 +211,7 @@
     "title": "The Captive Curse",
     "icon": "assets/game_icons/The_Captive_Curse.jpeg",
     "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/The.Captive.Curse.7z",
-    "executablePath": "game.exe",
+    "executablePath": "Captive.exe",
     "cheatsheetPath": "cheatsheets/The Captive Curse",
     "installed": false
   },
