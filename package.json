@@ -1,6 +1,6 @@
 {
   "name": "gameportal",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "webpack",
     "prestart": "npm run build",
     "postinstall": "electron-rebuild",
-    "dist": "electron-builder"
+    "dist": "webpack && electron-builder"
   },
   "keywords": [],
   "author": "",
@@ -50,6 +50,7 @@
     ],
     "win": {
       "target": "nsis",
+      "artifactName": "GamePortal-Setup-${version}.${ext}",
       "icon": "assets/icon.ico"
     },
     "nsis": {
@@ -60,7 +61,8 @@
       "runAfterFinish": true
     },
     "asarUnpack": [
-      "**/node_modules/7zip-bin/**"
+      "**/node_modules/7zip-bin/**",
+      "assets/dxwebsetup.exe"
     ]
   }
 }

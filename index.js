@@ -9,6 +9,7 @@ const sevenBin = require('7zip-bin');
 
 let mainWindow;
 let gamesData = [];
+let pendingUpdate = null;
 
 // Configure electron-log to capture everything neatly
 log.transports.file.level = 'info';
@@ -25,34 +26,74 @@ const getGameFolderSignature = (gameTitle) => {
     return cleanTitle; 
 };
 
+// Remote content lives in the GitHub repo; the installed .exe only ships a bundled fallback copy of games.json
+const REPO_RAW_BASE = 'https://raw.githubusercontent.com/Gus-Jacobs/Nancy-Drew-Game-Portal/main';
+const REMOTE_GAMES_URL = `${REPO_RAW_BASE}/games.json`;
+
+// Builds a raw GitHub URL from a repo-relative path, encoding each segment (titles contain spaces/apostrophes)
+const toRepoRawUrl = (relativePath) =>
+    `${REPO_RAW_BASE}/${relativePath.split(/[\/]/).filter(Boolean).map(encodeURIComponent).join('/')}`;
+
+// Accepts either the legacy bare array or the { appVersion, games } object format
+const isValidGamesData = (data) =>
+    Array.isArray(data) || (data && typeof data === 'object' && Array.isArray(data.games));
+
+// Numeric dotted-version comparison so an older remote appVersion never prompts a downgrade
+const isNewerVersion = (remote, local) => {
+    const a = String(remote).replace(/^v/i, '').split('.').map(n => parseInt(n, 10) || 0);
+    const b = String(local).replace(/^v/i, '').split('.').map(n => parseInt(n, 10) || 0);
+    for (let i = 0; i < Math.max(a.length, b.length); i++) {
+        if ((a[i] || 0) !== (b[i] || 0)) return (a[i] || 0) > (b[i] || 0);
+    }
+    return false;
+};
+
 async function fetchGamesData() {
-  const localPath = path.join(__dirname, 'games.json');
+  // The app directory is inside the read-only app.asar once packaged, so the cache must live in userData
+  const cachePath = path.join(app.getPath('userData'), 'games-cache.json');
+  const bundledPath = path.join(__dirname, 'games.json');
+
   try {
     log.info('Attempting to fetch remote games.json...');
-    const response = await axios.get('https://raw.githubusercontent.com/Gus-Jacobs/Nancy-Drew-Game-Portal/main/games.json', { responseType: 'json' });
-    const remoteGames = response.data;
+    const response = await axios.get(REMOTE_GAMES_URL, {
+      responseType: 'json',
+      timeout: 10000,
+      headers: { 'Cache-Control': 'no-cache' }
+    });
+    // axios hands back a raw string if the JSON fails to parse, so validate the shape explicitly
+    const remoteGames = typeof response.data === 'string' ? JSON.parse(response.data) : response.data;
+    if (!isValidGamesData(remoteGames)) {
+      throw new Error('Remote games.json does not contain a games list.');
+    }
     log.info('Successfully fetched remote games.json.');
 
-    // Save the fetched remote games.json locally as a cache
-    await fs.ensureDir(path.dirname(localPath));
-    await fs.writeFile(localPath, JSON.stringify(remoteGames, null, 2), 'utf-8');
-    log.info('Successfully cached remote games.json locally.');
+    // Caching is best-effort: a failed write must never discard freshly fetched data
+    try {
+      await fs.outputJson(cachePath, remoteGames, { spaces: 2 });
+      log.info('Successfully cached remote games.json locally.');
+    } catch (cacheError) {
+      log.warn('Could not cache remote games.json (continuing with remote data):', cacheError.message);
+    }
 
     return remoteGames;
   } catch (remoteError) {
     log.warn('Error fetching remote games.json, attempting to load local fallback:', remoteError.message);
+  }
+
+  for (const fallbackPath of [cachePath, bundledPath]) {
     try {
-      log.info('Attempting to read local games.json as fallback...');
-      const localData = await fs.readFile(localPath, 'utf-8');
-      const localGames = JSON.parse(localData);
-      log.info('Successfully loaded local games.json fallback.');
-      return localGames;
+      const localGames = await fs.readJson(fallbackPath);
+      if (isValidGamesData(localGames)) {
+        log.info(`Successfully loaded games.json fallback from ${fallbackPath}.`);
+        return localGames;
+      }
     } catch (localError) {
-      log.error('Error loading local games.json fallback:', localError.message);
-      log.error('Failed to load game data from both remote and local sources.');
-      return []; 
+      log.warn(`Could not load games.json fallback from ${fallbackPath}:`, localError.message);
     }
   }
+
+  log.error('Failed to load game data from both remote and local sources.');
+  return [];
 }
 
 function createWindow() {
@@ -88,18 +129,22 @@ app.whenReady().then(async () => {
   const gameList = Array.isArray(gamesData) ? gamesData : (gamesData.games || []);
   log.info('gamesData loaded:', gameList.map(g => g.title));
   
-  createWindow();
-
   // Core Auto-Update Logic: Check remote version against local bundle version metadata
   const remoteVersion = gamesData.appVersion;
-  if (remoteVersion && remoteVersion !== version) {
+  if (remoteVersion && isNewerVersion(remoteVersion, version)) {
     log.info(`Update Available! Local version: ${version} -> Remote version: ${remoteVersion}`);
+    pendingUpdate = {
+      local: version,
+      remote: remoteVersion,
+      url: `https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/v${remoteVersion}/GamePortal-Setup-${remoteVersion}.exe`
+    };
+  }
+
+  createWindow();
+
+  if (pendingUpdate) {
     mainWindow.webContents.on('did-finish-load', () => {
-      mainWindow.webContents.send('update-available', {
-        local: version,
-        remote: remoteVersion,
-        url: `https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/v${remoteVersion}/GamePortal-Setup-${remoteVersion}.exe`
-      });
+      mainWindow.webContents.send('update-available', pendingUpdate);
     });
   }
 
@@ -119,8 +164,19 @@ app.on('window-all-closed', () => {
 // IPC Handler: Fetching Games List normalized for the front-end architecture
 ipcMain.handle('get-games', async () => {
     const list = Array.isArray(gamesData) ? gamesData : (gamesData.games || []);
-    return list.map(game => ({...game, icon: `app://${game.icon}`}));
+    return list.map(game => ({...game, icon: resolveIconUrl(game.icon)}));
 });
+
+// Icons bundled in the .exe load locally; icons for games added after a build load from the repo instead
+function resolveIconUrl(icon) {
+    if (!icon) return '';
+    if (/^https?:\/\//i.test(icon)) return icon;
+    if (fs.existsSync(path.join(__dirname, icon))) return `app://${icon}`;
+    return toRepoRawUrl(icon);
+}
+
+// Pull-based twin of the 'update-available' push, in case the renderer subscribes after the page load event
+ipcMain.handle('get-update-info', () => pendingUpdate);
 
 ipcMain.handle('get-intro-video', () => {
   return 'app://assets/intro.mp4';
@@ -407,6 +463,30 @@ ipcMain.handle('submit-crash-report', async (event, reportData) => {
 ipcMain.handle('get-cheatsheet', async (event, gameName) => {
     const folderSignature = getGameFolderSignature(gameName);
     const cheatsheetPath = path.join(CHEATS_ROOT_DIR, folderSignature, 'guide.md');
+
+    // Prefer the repo copy (<cheatsheetPath>/guide.md) so cheatsheets can be added or edited without re-uploading archives
+    const list = Array.isArray(gamesData) ? gamesData : (gamesData.games || []);
+    const game = list.find(g => g.title === gameName);
+    if (game && game.cheatsheetPath) {
+        try {
+            const response = await axios.get(toRepoRawUrl(`${game.cheatsheetPath}/guide.md`), {
+                responseType: 'text',
+                timeout: 8000,
+                headers: { 'Cache-Control': 'no-cache' }
+            });
+            if (typeof response.data === 'string' && response.data.trim()) {
+                // Cache for offline use; a failed write shouldn't block showing the fetched content
+                fs.outputFile(cheatsheetPath, response.data, 'utf-8')
+                    .catch(err => log.warn(`Could not cache cheatsheet for ${gameName}:`, err.message));
+                return { success: true, content: response.data };
+            }
+        } catch (error) {
+            if (!(error.response && error.response.status === 404)) {
+                log.warn(`Remote cheatsheet fetch failed for ${gameName}, using local copy:`, error.message);
+            }
+        }
+    }
+
     try {
         const content = await fs.readFile(cheatsheetPath, 'utf-8');
         return { success: true, content };
@@ -433,9 +513,14 @@ ipcMain.handle('check-directx', async () => {
 });
 
 ipcMain.handle('install-directx', async () => {
-    const dxSetupPath = path.join(__dirname, 'assets', 'dxwebsetup.exe');
+    // Windows can't execute files inside app.asar, so the installer is unpacked alongside it (see asarUnpack)
+    let dxSetupPath = path.join(__dirname, 'assets', 'dxwebsetup.exe');
+    if (app.isPackaged) {
+        dxSetupPath = dxSetupPath.replace('app.asar', 'app.asar.unpacked');
+    }
     try {
-        shell.openPath(dxSetupPath);
+        const openError = await shell.openPath(dxSetupPath);
+        if (openError) throw new Error(openError);
         return true;
     } catch (error) {
         log.error('Failed to open DirectX installer:', error);
@@ -452,19 +537,25 @@ ipcMain.handle('download-app-update', async (event, { url, fileName }) => {
         const response = await axios({ method: 'get', url, responseType: 'stream' });
         const writer = fs.createWriteStream(fullPath);
 
-        response.data.pipe(writer);
-
-        return new Promise((resolve, reject) => {
-            writer.on('finish', () => {
-                log.info('App update build deployment fetched cleanly. Terminating process and launching setup engine wizard.');
-                shell.openPath(fullPath); 
-                app.quit(); 
-                resolve({ success: true });
-            });
+        await new Promise((resolve, reject) => {
+            response.data.pipe(writer);
+            writer.on('finish', resolve);
             writer.on('error', reject);
+            response.data.on('error', reject);
         });
+
+        // Only quit once the installer has actually launched, otherwise the user is left with no portal at all
+        log.info('App update build deployment fetched cleanly. Launching setup engine wizard.');
+        const openError = await shell.openPath(fullPath);
+        if (openError) throw new Error(`Could not launch installer: ${openError}`);
+
+        app.quit();
+        return { success: true };
     } catch (error) {
         log.error('Failed to download app update:', error);
+        if (error.message && !error.message.startsWith('Could not launch installer')) {
+            await fs.remove(fullPath).catch(() => {});
+        }
         return { success: false, error: error.message };
     }
 });

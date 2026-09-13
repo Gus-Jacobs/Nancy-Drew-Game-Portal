@@ -2,5 +2,7 @@ node_modules/
 dist/
 dist_electron/
 games/
-cheatsheets/
+cheatsheets/**
+!cheatsheets/**/
+!cheatsheets/**/guide.md
 *.log

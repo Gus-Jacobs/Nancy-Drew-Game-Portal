@@ -15,6 +15,7 @@ contextBridge.exposeInMainWorld('electron', {
 
     // NEW: App Auto-Updater Hook
     downloadAppUpdate: (args) => ipcRenderer.invoke('download-app-update', args),
+    getUpdateInfo: () => ipcRenderer.invoke('get-update-info'),
     onUpdateAvailable: (callback) => {
         ipcRenderer.on('update-available', (event, data) => callback(data));
     },

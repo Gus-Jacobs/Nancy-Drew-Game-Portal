@@ -289,6 +289,9 @@ const App = () => {
             console.log('Auto-update pipeline returned data array target matching version:', data.remote);
             setUpdateData(data);
         });
+        window.electron.getUpdateInfo().then((data) => {
+            if (data) setUpdateData(data);
+        });
 
         window.electron.onUpdateLocalGames((updatedGames) => {
             setLocalGames(updatedGames);
@@ -555,7 +558,13 @@ const App = () => {
             {/* Global Overlays and Flow Managers */}
             <UpdateModal 
                 data={updateData} 
-                onUpdate={() => window.electron.downloadAppUpdate({ url: updateData.url, fileName: `GamePortal-Setup-${updateData.remote}.exe` })}
+                onUpdate={async () => {
+                    const result = await window.electron.downloadAppUpdate({ url: updateData.url, fileName: `GamePortal-Setup-${updateData.remote}.exe` });
+                    if (result && !result.success) {
+                        // Fall back to a browser download so users are never stranded on an old version
+                        window.electron.openExternalLink(updateData.url);
+                    }
+                }}
                 onClose={() => setUpdateData(null)}
             />
 
