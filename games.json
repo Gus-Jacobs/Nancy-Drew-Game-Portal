@@ -59,7 +59,7 @@
       "id": "ghost-dogs-of-moon-lake",
       "title": "Ghost Dogs of Moon Lake",
       "icon": "assets/game_icons/Ghost_Dogs_of_Moon_Lake.jpeg",
-      "downloadUrl": "",
+      "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Ghost.Dogs.of.Moon.Lake.7z",
       "executablePath": "game.exe",
       "cheatsheetPath": "cheatsheets/Ghost Dogs of Moon Lake",
       "installed": false
