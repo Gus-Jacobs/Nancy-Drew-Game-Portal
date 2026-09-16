@@ -192,3 +192,41 @@ powershell.exe -Command "Get-ChildItem -Path 'C:\ND\<FolderSignature>' -Recurse 
 - Fix:
   - If background ambient music or character voices loop or stutter, drop `dsoal-aldrv.dll` and `dsound.dll` (DirectSound wrapper) into the game folder, or ensure the `.ini` uses root-relative paths for `HDSound` and `CDSound`.
   - Verify all sound files inside `HDSound\` and `CDSound\` were uncompressed properly during extraction.
+
+---
+
+### 7. "Insert Disc" Prompt & Hardcoded User Paths in `.ini`
+* **Cause:** Legacy games check the paths defined in the `[Nancy Data]` section of their `.ini` file for disc media (`IDPath`, `CDVideoPath`, `CDSoundPath`). If an installer was run on your development machine, these paths often get hardcoded to your personal environment (e.g., `\Users\<username>\Downloads\...` or `D:\CDVideo\`). On your PC, the engine finds the folder and passes; on a client machine, that path fails, prompting an **"Insert Disc"** dialog.
+* **Fix:**
+  1. Open the game's `.ini` file (e.g., `game.ini` or the title's custom `.ini`).
+  2. Ensure **all** media folders (`CDVideo`, `CDSound`, `DataFiles`, `HDVideo`, etc.) are moved directly inside `C:\ND\<FolderSignature>\`.
+  3. Strip out any references to local user profiles, drive letters (like `D:` or `E:`), or source setup folders.
+  4. Standardize the `[Nancy Data]` block to use root-relative paths exclusively within `\ND\<FolderSignature>\`:
+
+```ini
+[Nancy Data]
+CDDrive1=C:
+CDDrive2=C:
+CDDrive3=C:
+HDDrive=C:
+
+IDPath=\ND\<FolderSignature>\
+CifTreePath=\ND\<FolderSignature>\DataFiles\
+HDVideoPath=\ND\<FolderSignature>\HDVideo\
+CDVideoPath=\ND\<FolderSignature>\CDVideo\
+HDSoundPath=\ND\<FolderSignature>\HDSound\
+CDSoundPath=\ND\<FolderSignature>\CDSound\
+LoadSavePath=\ND\<FolderSignature>\
+
+RunEntirelyFromCDDrive=0
+CifTreeAndFilesOnCD=0
+TestingModeEnabled=0
+ExternalCifFileChecking=1
+DebugOutput=0
+RunInWindowedMode=0
+```
+Note: If CDVideo and CDSound folders are identical to or merged into HDVideo and HDSound, point both keys to the corresponding HD directories:
+
+`CDVideoPath=\ND\<FolderSignature>\HDVideo\`
+
+`CDSoundPath=\ND\<FolderSignature>\HDSound\`
