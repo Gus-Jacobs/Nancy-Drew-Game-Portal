@@ -77,7 +77,7 @@
       "id": "danger-on-deception-island",
       "title": "Danger on Deception Island",
       "icon": "assets/game_icons/Danger_on_Deception_Island.jpeg",
-      "downloadUrl": "",
+      "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Danger.on.Deception.Island.7z",
       "executablePath": "game.exe",
       "cheatsheetPath": "cheatsheets/Danger on Deception Island",
       "installed": false
