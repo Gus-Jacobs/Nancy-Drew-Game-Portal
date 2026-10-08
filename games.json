@@ -104,7 +104,7 @@
       "id": "secret-of-the-old-clock",
       "title": "Secret of the Old Clock",
       "icon": "assets/game_icons/Secret_of_the_Old_Clock.png",
-      "downloadUrl": "",
+      "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Secret.of.the.Old.Clock.7z",
       "executablePath": "game.exe",
       "cheatsheetPath": "cheatsheets/Secret of the Old Clock",
       "installed": false
