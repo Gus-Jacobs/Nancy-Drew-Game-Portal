@@ -122,7 +122,7 @@
       "id": "danger-by-design",
       "title": "Danger By Design",
       "icon": "assets/game_icons/Danger_By_Design.png",
-      "downloadUrl": "",
+      "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Danger.by.Design.7z",
       "executablePath": "game.exe",
       "cheatsheetPath": "cheatsheets/Danger By Design",
       "installed": false
