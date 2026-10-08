@@ -131,7 +131,7 @@
       "id": "the-creature-of-kapu-cave",
       "title": "The Creature of Kapu Cave",
       "icon": "assets/game_icons/The_Creature_of_Kapu_Cave.png",
-      "downloadUrl": "",
+      "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/The.Creature.of.Kapu.Cave.7z",
       "executablePath": "game.exe",
       "cheatsheetPath": "cheatsheets/The Creature of Kapu Cave",
       "installed": false
