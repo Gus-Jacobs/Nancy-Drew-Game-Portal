@@ -50,7 +50,7 @@
       "id": "secret-of-the-scarlet-hand",
       "title": "Secret of the Scarlet Hand",
       "icon": "assets/game_icons/Secret_of_the_Scarlet_Hand.png",
-      "downloadUrl": "",
+      "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Secret.of.the.Scarlet.Hand.7z",
       "executablePath": "game.exe",
       "cheatsheetPath": "cheatsheets/Secret of the Scarlet Hand",
       "installed": false
