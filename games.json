@@ -41,7 +41,7 @@
       "id": "the-final-scene",
       "title": "The Final Scene",
       "icon": "assets/game_icons/The_Final_Scene.jpeg",
-      "downloadUrl": "",
+      "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/The.Final.Scene.7z",
       "executablePath": "game.exe",
       "cheatsheetPath": "cheatsheets/The Final Scene",
       "installed": false
