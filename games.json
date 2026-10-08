@@ -68,7 +68,7 @@
       "id": "the-haunted-carousel",
       "title": "The Haunted Carousel",
       "icon": "assets/game_icons/The_Haunted_Carousel.jpeg",
-      "downloadUrl": "",
+      "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/The.Haunted.Carousel.7z",
       "executablePath": "game.exe",
       "cheatsheetPath": "cheatsheets/The Haunted Carousel",
       "installed": false
