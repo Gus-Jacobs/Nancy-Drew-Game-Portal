@@ -167,8 +167,8 @@
       "id": "the-haunting-of-castle-malloy",
       "title": "The Haunting of Castle Malloy",
       "icon": "assets/game_icons/The_Haunting_of_Castle_Malloy.jpeg",
-      "downloadUrl": "",
-      "executablePath": "game.exe",
+      "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/The.Haunting.of.Castle.Malloy.7z",
+      "executablePath": "CastleMalloy.exe",
       "cheatsheetPath": "cheatsheets/The Haunting of Castle Malloy",
       "installed": false
     },
