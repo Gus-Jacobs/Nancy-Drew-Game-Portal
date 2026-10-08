@@ -23,7 +23,7 @@
       "id": "message-in-a-haunted-mansion",
       "title": "Message in a Haunted Mansion",
       "icon": "assets/game_icons/Message_in_a_Haunted_Mansion.png",
-      "downloadUrl": "",
+      "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Message.in.a.Haunted.Mansion.7z",
       "executablePath": "game.exe",
       "cheatsheetPath": "cheatsheets/Message in a Haunted Mansion",
       "installed": false
