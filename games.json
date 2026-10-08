@@ -86,7 +86,7 @@
       "id": "the-secret-of-shadow-ranch",
       "title": "The Secret of Shadow Ranch",
       "icon": "assets/game_icons/The_Secret_of_Shadow_Ranch.jpeg",
-      "downloadUrl": "",
+      "downloadUrl": "https://github.com/Gus-Jacobs/Nancy-Drew-Game-Portal/releases/download/2.0.0/Secret.of.Shadow.Ranch.7z",
       "executablePath": "game.exe",
       "cheatsheetPath": "cheatsheets/The Secret of Shadow Ranch",
       "installed": false
